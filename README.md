@@ -23,7 +23,7 @@ Result.Ok<UserAddDto>(new UserAddDto() { UserName = "john" });
 ```
 
 ```csharp
-Result.Fail<UserAddDto>("error");
+Result.Fail<UserAddDto>("error occured");
 ```
 
 

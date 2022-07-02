@@ -9,40 +9,40 @@ I Write A few features In Librariy
 
 
 ```csharp
-ReeResult.Result.Ok();
+Result.Ok();
 ```
 
  ```csharp
-ReeResult.Result.Fail("error occured");
+Result.Fail("error occured");
 ```
 
 
 
 ```csharp
-ReeResult.Result.Ok<UserAddDto>(new UserAddDto() { UserName = "john" });
+Result.Ok<UserAddDto>(new UserAddDto() { UserName = "john" });
 ```
 
 ```csharp
-ReeResult.Result.Fail<UserAddDto>("error");
+Result.Fail<UserAddDto>("error");
 ```
 
 
 ```csharp
-var result = new ReeResult.Result();
+var result = new Result();
 result.AddReason("reason");
 result.AddError("error");
 result.AddError("error2");
 ```
 
 ```csharp
-var result = new ReeResult.Result()
+var result = new Result()
 .AddReason("reason")
 .AddError("error")
 .AddError("error2");
 ```
 
 ```csharp
-var result = new ReeResult.Result<UserAddDto>();
+var result = new Result<UserAddDto>();
 result.AddValue(new UserAddDto() { UserName = "john" });
 ```
 

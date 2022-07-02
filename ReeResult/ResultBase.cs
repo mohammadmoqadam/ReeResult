@@ -14,9 +14,9 @@ namespace ReeResult
         public List<string> Errors { get; set; } = new List<string>();
         public object? Value { get; set; } = null;
 
-        public static Result Ok<ResultType>(ResultType value)
+        public static Result<ResultType> Ok<ResultType>(ResultType value)
         {
-            return new Result
+            return new Result<ResultType>
             {
                 Value = value
             };

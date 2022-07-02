@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReeResult
 {
-    public abstract class ResultBase
+    public  class ResultBase
     {
         public bool IsSuccess { get; set; } = true;
         public bool IsFailed { get; set; } = false;
@@ -22,9 +22,9 @@ namespace ReeResult
             };
         }
 
-        public static Result Fail<ResultType>(string message)
+        public static Result<ResultType> Fail<ResultType>(string message)
         {
-            return new Result()
+            return new Result<ResultType>
             {
                 Errors = new List<string> { message },
                 IsFailed = true,

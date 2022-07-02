@@ -6,7 +6,7 @@
     public class Result :ResultBase
     {
 
-        public static Result OK()
+        public static Result Ok()
         {
             return new Result();
         }

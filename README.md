@@ -7,25 +7,27 @@ I Write A few features In Librariy
 
 
 
+
+```csharp
+ReeResult.Result.Ok();
+```
+
  ```csharp
 ReeResult.Result.Fail("error occured");
 ```
 
-```csharp
-ReeResult.Result.OK();
-```
+
 
 ```csharp
-ReeResult.Result.OK<UserAddDto>(new UserAddDto() { UserName = "john" });
+ReeResult.Result.Ok<UserAddDto>(new UserAddDto() { UserName = "john" });
 ```
-```csharp
 
 ```csharp
 ReeResult.Result.Fail<UserAddDto>("error");
 ```
+
+
 ```csharp
-
-
 var result = new ReeResult.Result();
 result.AddReason("reason");
 result.AddError("error");
@@ -45,4 +47,3 @@ result.AddValue(new UserAddDto() { UserName = "john" });
 ```
 
 Thanks For Using In This Library
-

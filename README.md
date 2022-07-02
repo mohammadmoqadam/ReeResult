@@ -20,6 +20,12 @@ ReeResult.Result.OK<UserAddDto>(new UserAddDto() { UserName = "john" });
 ```
 ```csharp
 
+```csharp
+ReeResult.Result.Fail<UserAddDto>("error");
+```
+```csharp
+
+
 var result = new ReeResult.Result();
 result.AddReason("reason");
 result.AddError("error");

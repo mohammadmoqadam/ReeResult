@@ -22,6 +22,16 @@ namespace ReeResult
             };
         }
 
+        public static Result Fail<ResultType>(string message)
+        {
+            return new Result()
+            {
+                Errors = new List<string> { message },
+                IsFailed = true,
+                IsSuccess = false
+            };
+        }
+
         public static Result Fail(string message)
         {
             return new Result()

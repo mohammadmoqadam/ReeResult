@@ -55,9 +55,14 @@ var result = new Result<UserAddDto>();
 result.AddValue(new UserAddDto() { UserName = "john" });
 ```
 
-#Result.HttpResponse
+# ReeResult.HttpResponse
 
 in package return standard result with custome http status code
+
+[You Can See And Get from Nuget](https://www.nuget.org/packages/ReeResult.HttpResponse")
+
+`Install-Package ReeResult.HttpResponse`
+
 
 ```csharp
 var result = new Result<UserAddDto>();

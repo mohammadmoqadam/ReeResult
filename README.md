@@ -65,6 +65,7 @@ result.AddError("Error Occured", System.Net.HttpStatusCode.Unauthorized);
 return result;
 ```
 for use this attribute just add  **[ApiResult]** attribute in top of controller.
+
  or add in startup with below sample
  
  ```csharp

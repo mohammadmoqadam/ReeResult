@@ -55,4 +55,30 @@ var result = new Result<UserAddDto>();
 result.AddValue(new UserAddDto() { UserName = "john" });
 ```
 
+# ReeResult.HttpResponse
+
+in package return standard result with custome http status code
+
+[You Can See And Get from Nuget](https://www.nuget.org/packages/ReeResult.HttpResponse")
+
+`Install-Package ReeResult.HttpResponse`
+
+
+```csharp
+var result = new Result<UserAddDto>();
+result.AddError("Error Occured", System.Net.HttpStatusCode.Unauthorized);
+return result;
+```
+for use this attribute just add  **[ApiResult]** attribute in top of controller.
+
+ or add in startup with below sample
+ 
+ ```csharp
+services.AddControllers(options =>
+ {
+   options.Filters.Add(typeof(ReeResult.HttpResponse.ApiResultAttribute));
+});
+```
+
+
 Thanks For Using In This Library

@@ -13,9 +13,11 @@
             return new Result();
         }
 
-        public static Result<T> Ok<T>()
+        public static Result<ResultType> Ok<ResultType>(ResultType value)
         {
-            return new Result<T>();
+            var result = new Result<ResultType>();
+            result.Value = value;
+            return result;
         }
 
         public static Result Fail(string message)
@@ -28,9 +30,9 @@
             return result;
         }
 
-        public static Result<T> Fail<T>(string message)
+        public static Result<ResultType> Fail<ResultType>(string message)
         {
-            var result = new Result<T>();
+            var result = new Result<ResultType>();
             result.IsSuccess = false;
             result.IsFailed = true;
             result.Value = null;

@@ -16,9 +16,9 @@ namespace ReeResult.HttpResponse
             result.StatusCode = statusCode;
             return result;
         }
-        public static Result<T> Fail<T>(string message, HttpStatusCode statusCode)
+        public static Result<ResultType> Fail<ResultType>(string message, HttpStatusCode statusCode)
         {
-            var result = new Result<T>();
+            var result = new Result<ResultType>();
             result.AddError(message);
             result.StatusCode = statusCode;
             return result;
@@ -27,10 +27,13 @@ namespace ReeResult.HttpResponse
         {
             return new Result();
         }
-        public static Result<T> Ok<T>()
+        public static Result<ResultType> Ok<ResultType>(ResultType value)
         {
-            return new Result<T>();
+            var result = new Result<ResultType>();
+            result.Value = value;
+            return result;
         }
+
         public Result AddError(string message)
         {
             this.IsSuccess = false;

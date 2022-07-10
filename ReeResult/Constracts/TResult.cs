@@ -18,9 +18,6 @@ namespace ReeResult
     }
 
 
-    public class TResult<IResult>:TResult
-    {
 
-    }
 
 }

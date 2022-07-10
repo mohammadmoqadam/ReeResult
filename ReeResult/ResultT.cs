@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReeResult
 {
-    public class Result<ResultType> : ResultBase
+    public class Result<ResultType> : ResultBase<ResultType>
     {
         public Result<ResultType> AddValue(ResultType resultType)
         {
@@ -16,7 +16,10 @@ namespace ReeResult
 
         public Result<ResultType> AddError(string message)
         {
-            base.AddErrorConfig();
+            this.IsFailed = true;
+            this.IsSuccess = false;
+            this.Value = null;
+
             if (Errors == null)
                 Errors = new List<string>();
             Errors.Add(message);

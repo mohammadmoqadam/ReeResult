@@ -19,12 +19,10 @@ namespace ReeResult.HttpResponse
                 var responseResult = result.Value as ResHttp;
                 if (responseResult != null && responseResult.IsFailed)
                 {
-                    var res = result.Value as ResultBase;
                     var res2 = new ReeResult.Result();
                     res2.IsSuccess = false;
                     res2.IsFailed = true;
-                    res2.Errors = res.Errors;
-                    res2.Value = res.Value;
+                    res2.Errors = responseResult.Errors;
                     switch (responseResult.StatusCode)
                     {
                         case null:

@@ -6,7 +6,7 @@ using System.Net;
 
 namespace ReeResult.HttpResponse
 {
-    public class Result : ReeResult.Result, ResHttp
+    public class Result : ResultBase<DefaultResult>, ResHttp
     {
         public HttpStatusCode? StatusCode { get; internal set; }
         public static Result Fail(string message, HttpStatusCode statusCode)
@@ -23,7 +23,26 @@ namespace ReeResult.HttpResponse
             result.StatusCode = statusCode;
             return result;
         }
+        public static Result Ok()
+        {
+            return new Result();
+        }
+        public static Result<T> Ok<T>()
+        {
+            return new Result<T>();
+        }
+        public Result AddError(string message)
+        {
+            this.IsSuccess = false;
+            this.IsFailed = true;
+            this.Value = null;
+            if (Errors == null)
+                Errors = new List<string>();
+            Errors.Add(message);
 
+
+            return this;
+        }
         public Result AddError(string message, HttpStatusCode statusCode)
         {
             this.IsSuccess = false;
@@ -36,10 +55,18 @@ namespace ReeResult.HttpResponse
 
             return this;
         }
+        public Result AddReason(string message)
+        {
+            if (Reasons == null)
+                Reasons = new List<string>();
+            Reasons.Add(message);
+
+            return this;
+        }
 
     }
 
-    public class Result<ResultType> : ReeResult.Result<ResultType>, ResHttp
+    public class Result<ResultType> : ResultBase<ResultType>, ResHttp
     {
         public HttpStatusCode? StatusCode { get; internal set; }
 
@@ -55,6 +82,35 @@ namespace ReeResult.HttpResponse
 
             return this;
 
+        }
+
+        public Result<ResultType> AddValue(ResultType resultType)
+        {
+            this.Value = resultType;
+            return this;
+        }
+
+        public Result<ResultType> AddError(string message)
+        {
+            this.IsFailed = true;
+            this.IsSuccess = false;
+            this.Value = null;
+
+            if (Errors == null)
+                Errors = new List<string>();
+            Errors.Add(message);
+
+            return this;
+
+        }
+
+        public Result<ResultType> AddReason(string message)
+        {
+            if (Reasons == null)
+                Reasons = new List<string>();
+            Reasons.Add(message);
+
+            return this;
         }
 
     }

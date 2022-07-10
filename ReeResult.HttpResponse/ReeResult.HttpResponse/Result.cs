@@ -135,6 +135,7 @@ namespace ReeResult.HttpResponse
         bool IsFailed { get; set; }
         List<string> Errors { get; set; }
         HttpStatusCode? StatusCode { get; }
+        public object? Value { get; }
     }
 
 

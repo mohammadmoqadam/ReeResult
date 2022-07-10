@@ -12,38 +12,43 @@ namespace ReeResult.HttpResponse
             try
             {
 
-                if (result == null || result.Value == null || result.Value.GetType().GetInterfaces().FirstOrDefault()?.Name!=nameof(ReeResult.HttpResponse.ResHttp)) return;
+                if (result == null || result.Value == null || result.Value.GetType().GetInterfaces().FirstOrDefault()?.Name != nameof(ReeResult.HttpResponse.ResHttp)) return;
 
-
+                var response = new ReeResult.Result();
 
                 var responseResult = result.Value as ResHttp;
                 if (responseResult != null && responseResult.IsFailed)
                 {
-                    var res2 = new ReeResult.Result();
-                    res2.IsSuccess = false;
-                    res2.IsFailed = true;
-                    res2.Errors = responseResult.Errors;
+
+                    response.IsSuccess = false;
+                    response.IsFailed = true;
+                    response.Errors = responseResult.Errors;
                     switch (responseResult.StatusCode)
                     {
                         case null:
-                            context.Result = new BadRequestObjectResult(res2);
+                            context.Result = new BadRequestObjectResult(response);
                             break;
                         case HttpStatusCode.BadRequest:
-                            context.Result = new BadRequestObjectResult(res2);
+                            context.Result = new BadRequestObjectResult(response);
                             break;
                         case HttpStatusCode.Conflict:
-                            context.Result = new ConflictObjectResult(res2);
+                            context.Result = new ConflictObjectResult(response);
                             break;
                         case HttpStatusCode.Unauthorized:
-                            context.Result = new UnauthorizedObjectResult(res2);
+                            context.Result = new UnauthorizedObjectResult(response);
                             break;
                         case HttpStatusCode.NotFound:
-                            context.Result=new NotFoundObjectResult(res2);
+                            context.Result = new NotFoundObjectResult(response);
                             break;
                         default:
-                            context.Result = new BadRequestObjectResult(res2);
+                            context.Result = new BadRequestObjectResult(response);
                             break;
                     }
+                }
+                else
+                {
+                    response.Value = responseResult?.Value;
+                    context.Result = new OkObjectResult(response);
                 }
             }
             catch (Exception)

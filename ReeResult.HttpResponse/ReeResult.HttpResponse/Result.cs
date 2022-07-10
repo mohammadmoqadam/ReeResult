@@ -9,6 +9,18 @@ namespace ReeResult.HttpResponse
     public class Result : ResultBase<DefaultResult>, ResHttp
     {
         public HttpStatusCode? StatusCode { get; internal set; }
+        public static Result Fail(string message)
+        {
+            var result = new Result();
+            result.AddError(message);
+            return result;
+        }
+        public static Result<ResultType> Fail<ResultType>(string message)
+        {
+            var result = new Result<ResultType>();
+            result.AddError(message);
+            return result;
+        }
         public static Result Fail(string message, HttpStatusCode statusCode)
         {
             var result = new Result();

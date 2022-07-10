@@ -40,6 +40,9 @@ namespace ReeResult.HttpResponse
                         case HttpStatusCode.NotFound:
                             context.Result = new NotFoundObjectResult(response);
                             break;
+                        case HttpStatusCode.OK:
+                            context.Result = new OkObjectResult(response);
+                            break;
                         default:
                             context.Result = new BadRequestObjectResult(response);
                             break;

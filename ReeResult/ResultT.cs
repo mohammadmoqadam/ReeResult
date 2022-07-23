@@ -16,10 +16,7 @@ namespace ReeResult
 
         public Result<ResultType> AddError(string message)
         {
-            this.IsFailed = true;
-            this.IsSuccess = false;
-            this.Value = null;
-
+            this.SetFaild();
             if (Errors == null)
                 Errors = new List<string>();
             Errors.Add(message);

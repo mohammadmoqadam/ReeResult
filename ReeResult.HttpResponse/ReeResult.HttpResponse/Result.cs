@@ -48,9 +48,7 @@ namespace ReeResult.HttpResponse
 
         public Result AddError(string message)
         {
-            this.IsSuccess = false;
-            this.IsFailed = true;
-            this.Value = null;
+            SetFaild();
             if (Errors == null)
                 Errors = new List<string>();
             Errors.Add(message);
@@ -60,9 +58,7 @@ namespace ReeResult.HttpResponse
         }
         public Result AddError(string message, HttpStatusCode statusCode)
         {
-            this.IsSuccess = false;
-            this.IsFailed = true;
-            this.Value = null;
+            SetFaild();
             if (Errors == null)
                 Errors = new List<string>();
             Errors.Add(message);

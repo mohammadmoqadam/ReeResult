@@ -59,7 +59,7 @@ You Can Merge Multiple Result in one Result
 
 ```csharp
  var mResult = new ReeResult.Result();
- MResult.Merge(result);
+ mResult.Merge(result);
 ```
 
 

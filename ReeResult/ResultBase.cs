@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace ReeResult
 {
-    public class ResultBase<T>
+    public abstract class ResultBase<T>
     {
         public bool IsSuccess { get; set; } = true;
-        public bool IsFailed { get;  set; } = false;
-        public List<string> Reasons { get;  set; } = new List<string>();
-        public List<string> Errors { get;  set; } = new List<string>();
-        public object? Value { get;  set; } = null;
+        public bool IsFailed { get; set; } = false;
+        public List<string> Reasons { get; set; } = new List<string>();
+        public List<string> Errors { get; set; } = new List<string>();
+        public object? Value { get; set; } = null;
 
 
-
-
+        protected void SetFaild()
+        {
+            this.IsSuccess = false;
+            this.IsFailed = true;
+            this.Value = null;
+        }
     }
 }

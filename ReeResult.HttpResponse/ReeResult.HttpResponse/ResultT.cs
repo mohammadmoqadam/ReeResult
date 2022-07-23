@@ -1,13 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReeResult
+namespace ReeResult.HttpResponse
 {
-    public class Result<ResultType> : ResultBase<ResultType>
+    public class Result<ResultType> : ResultBase<ResultType>, ResHttp
     {
+        public HttpStatusCode? StatusCode { get; internal set; }
+
+        public Result<ResultType> AddError(string message, HttpStatusCode statusCode)
+        {
+            this.IsFailed = true;
+            this.IsSuccess = false;
+            this.Value = null;
+            this.StatusCode = statusCode;
+            if (Errors == null)
+                Errors = new List<string>();
+            Errors.Add(message);
+
+            return this;
+
+        }
+
         public Result<ResultType> AddValue(ResultType resultType)
         {
             this.Value = resultType;
@@ -43,6 +60,8 @@ namespace ReeResult
             if (this.IsSuccess && data.IsFailed)
             {
                 SetFaild();
+                if (data.StatusCode != null)
+                    this.StatusCode = data.StatusCode;
             }
             this.Errors.AddRange(data.Errors);
             this.Reasons.AddRange(data.Reasons);
@@ -51,5 +70,6 @@ namespace ReeResult
             return this;
 
         }
+
     }
 }

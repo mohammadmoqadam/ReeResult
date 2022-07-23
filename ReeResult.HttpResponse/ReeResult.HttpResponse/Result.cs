@@ -78,57 +78,21 @@ namespace ReeResult.HttpResponse
 
             return this;
         }
+        public Result Merge<ResultType>(ResultBase<ResultType> data)
+        {
+            if (data == null) return this;
+            if (this.IsSuccess && data.IsFailed)
+            {
+                SetFaild();
+            }
+            this.Errors.AddRange(data.Errors);
+            this.Reasons.AddRange(data.Reasons);
+            return this;
 
+        }
     }
 
-    public class Result<ResultType> : ResultBase<ResultType>, ResHttp
-    {
-        public HttpStatusCode? StatusCode { get; internal set; }
-
-        public Result<ResultType> AddError(string message, HttpStatusCode statusCode)
-        {
-            this.IsFailed = true;
-            this.IsSuccess = false;
-            this.Value = null;
-            this.StatusCode = statusCode;
-            if (Errors == null)
-                Errors = new List<string>();
-            Errors.Add(message);
-
-            return this;
-
-        }
-
-        public Result<ResultType> AddValue(ResultType resultType)
-        {
-            this.Value = resultType;
-            return this;
-        }
-
-        public Result<ResultType> AddError(string message)
-        {
-            this.IsFailed = true;
-            this.IsSuccess = false;
-            this.Value = null;
-
-            if (Errors == null)
-                Errors = new List<string>();
-            Errors.Add(message);
-
-            return this;
-
-        }
-
-        public Result<ResultType> AddReason(string message)
-        {
-            if (Reasons == null)
-                Reasons = new List<string>();
-            Reasons.Add(message);
-
-            return this;
-        }
-
-    }
+  
 
     public interface ResHttp
     {

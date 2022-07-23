@@ -8,6 +8,7 @@
 
     public class Result : ResultBase<DefaultResult>
     {
+  
         public static Result Ok()
         {
             return new Result();
@@ -61,6 +62,20 @@
 
             return this;
         }
+
+        public Result Merge<ResultType>(ResultBase<ResultType> data)
+        {
+            if (data == null) return this;
+            if (this.IsSuccess && data.IsFailed)
+            {
+                SetFaild();
+            }
+            this.Errors.AddRange(data.Errors);
+            this.Reasons.AddRange(data.Reasons);
+            return this;
+
+        }
+
 
     }
 

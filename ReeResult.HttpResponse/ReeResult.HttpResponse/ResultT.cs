@@ -65,6 +65,17 @@ namespace ReeResult.HttpResponse
             return this;
 
         }
+        public Result<ResultType> Merge(Result data)
+        {
+            if (data == null) return this;
+            if (this.IsSuccess && data.IsFailed)
+            {
+                SetFaild();
+            }
+            this.Errors.AddRange(data.Errors);
+            this.Reasons.AddRange(data.Reasons);
+            return this;
 
+        }
     }
 }

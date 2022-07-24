@@ -34,7 +34,7 @@ namespace ReeResult
             return this;
         }
 
-        public Result<ResultType> Merge<ResultTypeT>(Result<ResultTypeT> data)
+        public Result<ResultType> Merge<ResultTypeT>(ResultBase<ResultTypeT> data)
         {
             if (data == null) return this;
             if (this.IsSuccess && data.IsFailed)

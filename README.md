@@ -54,6 +54,16 @@ var result = new Result()
 var result = new Result<UserAddDto>();
 result.AddValue(new UserAddDto() { UserName = "john" });
 ```
+You Can Merge Multiple Result in one Result
+
+
+```csharp
+ var mResult = new ReeResult.Result();
+ mResult.Merge(result);
+```
+
+
+
 
 # ReeResult.HttpResponse
 

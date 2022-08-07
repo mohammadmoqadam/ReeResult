@@ -77,5 +77,10 @@ namespace ReeResult.HttpResponse
             return this;
 
         }
+
+        public ResultType? GetValue()
+        {
+            return this.Value == null ? default(ResultType?) : (ResultType)this.Value;
+        }
     }
 }

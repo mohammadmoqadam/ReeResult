@@ -43,8 +43,8 @@ namespace ReeResult
             }
             this.Errors.AddRange(data.Errors);
             this.Reasons.AddRange(data.Reasons);
-            if (typeof(ResultType) == typeof(ResultTypeT) && this.IsSuccess && this.Value == null && data.Value != null)
-                this.Value = data.Value;
+            if (typeof(ResultType) == typeof(ResultTypeT) && this.IsSuccess && this.Value == null && data != null && data.Value != null)
+                this.Value = (ResultType)(object)data.Value;
             return this;
 
         }

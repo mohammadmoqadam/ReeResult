@@ -6,7 +6,7 @@ using System.Net;
 
 namespace ReeResult.HttpResponse
 {
-    public class Result : ResultBase<DefaultResult>, ResHttp
+    public class Result : ResultBase<DefaultResult>, ResHttp<DefaultResult>
     {
         public HttpStatusCode? StatusCode { get; internal set; }
         public static Result Fail(string message)
@@ -102,12 +102,12 @@ namespace ReeResult.HttpResponse
 
   
 
-    public interface ResHttp
+    public interface ResHttp<T>
     {
         bool IsFailed { get; set; }
         List<string> Errors { get; set; }
         HttpStatusCode? StatusCode { get; }
-        public object? Value { get; }
+        public T? Value { get; }
     }
 
 

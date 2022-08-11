@@ -12,14 +12,14 @@ namespace ReeResult
         public bool IsFailed { get; set; } = false;
         public List<string> Reasons { get; set; } = new List<string>();
         public List<string> Errors { get; set; } = new List<string>();
-        public object? Value { get; set; } = null;
+        public T? Value { get; set; } = default(T?);
 
 
         protected void SetFaild()
         {
             this.IsSuccess = false;
             this.IsFailed = true;
-            this.Value = null;
+            this.Value = default(T?);
         }
     }
 }

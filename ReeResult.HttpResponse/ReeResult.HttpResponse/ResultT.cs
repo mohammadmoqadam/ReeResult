@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReeResult.HttpResponse
 {
-    public class Result<ResultType> : ResultBase<ResultType>, ResHttp
+    public class Result<ResultType> : ResultBase<ResultType>, ResHttp<ResultType>
     {
         public HttpStatusCode? StatusCode { get; internal set; }
 
@@ -61,7 +61,7 @@ namespace ReeResult.HttpResponse
             this.Errors.AddRange(data.Errors);
             this.Reasons.AddRange(data.Reasons);
             if (typeof(ResultType) == typeof(ResultTypeT) && this.IsSuccess && this.Value == null && data.Value != null)
-                this.Value = data.Value;
+                this.Value = (ResultType)(object)data.Value;
             return this;
 
         }

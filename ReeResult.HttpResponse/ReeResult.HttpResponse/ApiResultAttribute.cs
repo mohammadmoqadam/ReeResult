@@ -8,6 +8,7 @@ namespace ReeResult.HttpResponse
     {
         public override void OnResultExecuting(ResultExecutingContext context)
         {
+            if (context.Result.GetType() != typeof(ObjectResult)) return;
             var result = (ObjectResult)context.Result;
             var classType = result?.Value?.GetType();
             try
